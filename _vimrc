@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-07-17 17:56
+" -----------------     Date: 2013-07-17 22:19
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -30,9 +30,10 @@ if g:atCompany
     " set tags+=D:/Ruchee/workspace/common/tags
 
     " set tags+=D:/Ruchee/workspace/Apps/php/tp_primer/ThinkPHP/tags
-
     " set path+=D:/Ruchee/MinGW/include
 else
+    " set tags+=D:/Develop/workspace/php/tp_primer/ThinkPHP/tags
+    " set path+=D:/Develop/MinGW/include
 endif
 
 
