@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-07-17 22:19
+" -----------------     Date: 2013-07-18 18:37
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -401,10 +401,10 @@ imap <leader>v <ESC>"+p
 nmap <leader>v "+p
 vmap <leader>v "+p
 
-" \bb                 按=号对齐代码
+" \bb                 按=号对齐代码 [Tabular插件]
 nmap <leader>bb :Tab /=<CR>
 
-" \bn                 自定义对齐
+" \bn                 自定义对齐    [Tabular插件]
 nmap <leader>bn :Tab /
 
 " \nt                 打开NERDTree窗口，在左侧栏显示
