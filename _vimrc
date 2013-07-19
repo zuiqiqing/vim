@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-07-18 18:37
+" -----------------     Date: 2013-07-19 12:37
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -207,8 +207,8 @@ set shiftwidth=4
 set tabstop=4
 
 " 对部分语言设置单独的缩进
-au FileType lua,scheme,lisp,sh set shiftwidth=2
-au FileType lua,scheme,lisp,sh set tabstop=2
+au FileType lua,sh,scheme,lisp set shiftwidth=2
+au FileType lua,sh,scheme,lisp set tabstop=2
 
 " 根据后缀名指定文件类型
 au BufRead,BufNewFile *.txt setlocal ft=txt
@@ -345,6 +345,7 @@ else
 endif
 let g:snipMate                         = {}
 let g:snipMate.scope_aliases           = {}
+let g:snipMate.scope_aliases['c']      = 'c,gtk'
 let g:snipMate.scope_aliases['php']    = 'php,html'
 let g:snipMate.scope_aliases['smarty'] = 'smarty,html'
 let g:snipMate.scope_aliases['xhtml']  = 'html'
@@ -438,24 +439,26 @@ func! CompileCode()
     exec "w"
     if &filetype == "c"
         exec "!gcc -Wall -std=c11 -o %:r %:t"
+    elseif &filetype == "d"
+        exec "!dmd -wi %:t"
     elseif &filetype == "lua"
         exec "!lua %:t"
     elseif &filetype == "perl"
         exec "!perl %:t"
     elseif &filetype == "php"
         exec "!php %:t"
+    elseif &filetype == "sh"
+        exec "!bash %:t"
     elseif &filetype == "scheme"
         exec "!petite --script %:t"
     elseif &filetype == "lisp"
         exec "!ccl --load %:t"
-    elseif &filetype == "sh"
-        exec "!bash %:t"
     endif
 endfunc
 
 " 运行可执行文件
 func! RunCode()
-    if &filetype == "c"
+    if &filetype == "c" || &filetype == "d"
         if g:isWIN
             exec "!%:r.exe"
         else
@@ -467,12 +470,12 @@ func! RunCode()
         exec "!perl %:t"
     elseif &filetype == "php"
         exec "!php %:t"
+    elseif &filetype == "sh"
+        exec "!bash %:t"
     elseif &filetype == "scheme"
         exec "!petite --script %:t"
     elseif &filetype == "lisp"
         exec "!ccl --load %:t"
-    elseif &filetype == "sh"
-        exec "!bash %:t"
     endif
 endfunc
 

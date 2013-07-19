@@ -32,9 +32,10 @@ endfunction
 function s:DetectFirstLine()
     "跳转到指定区域的第一行，开始操作
     exe 'normal '.1.'G'
-    " 以下用于声明需要在载入模板时跳过的语句，已增加和修改Coffee/Lua/Perl/Blade/Ruby/Racket/newLisp/Clojure/Node的声明
-    " Ruchee 2012-04-13、2012-10-19、2013-01-30、2013-03-20、2013-04-02、2013-04-12、2013-04-28、2013-05-09
+    " 以下用于声明需要在载入模板时跳过的语句，已增加和修改D/Coffee/Lua/Perl/Blade/Ruby/Racket/newLisp/Clojure/Node的声明
+    " Ruchee 2012-04-13、2012-10-19、2013-01-30、2013-03-20、2013-04-02、2013-04-12、2013-04-28、2013-05-09、2013-07-19
     let arrData = [
+                \['d',['^#!.*$']],
                 \['coffee',['^#!.*$']],
                 \['html',['^<!.*']],
                 \['lua',['^#!.*$']],
