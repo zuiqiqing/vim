@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-07-20 14:06
+" -----------------     Date: 2013-07-20 17:16
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -30,10 +30,8 @@ if g:atCompany
     " set tags+=D:/Ruchee/workspace/common/tags
 
     " set tags+=D:/Ruchee/workspace/Apps/php/tp_primer/ThinkPHP/tags
-    " set path+=D:/Ruchee/MinGW/include
 else
     " set tags+=D:/Develop/workspace/php/tp_primer/ThinkPHP/tags
-    " set path+=D:/Develop/MinGW/include
 endif
 
 
@@ -207,8 +205,8 @@ set shiftwidth=4
 set tabstop=4
 
 " 对部分语言设置单独的缩进
-au FileType lua,sh,scheme set shiftwidth=2
-au FileType lua,sh,scheme set tabstop=2
+au FileType sh,scheme set shiftwidth=2
+au FileType sh,scheme set tabstop=2
 
 " 根据后缀名指定文件类型
 au BufRead,BufNewFile *.txt setlocal ft=txt
@@ -436,14 +434,8 @@ nmap <leader>nu <ESC>:se nu!<CR>
 " 编译源文件
 func! CompileCode()
     exec "w"
-    if &filetype == "c"
-        exec "!gcc -Wall -std=c11 -o %:r %:t"
-    elseif &filetype == "cpp"
-        exec "!g++ -Wall -std=c++11 -o %:r %:t"
-    elseif &filetype == "d"
+    if &filetype == "d"
         exec "!dmd -wi %:t"
-    elseif &filetype == "lua"
-        exec "!lua %:t"
     elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
@@ -455,14 +447,12 @@ endfunc
 
 " 运行可执行文件
 func! RunCode()
-    if &filetype == "c" || &filetype == "cpp" || &filetype == "d"
+    if &filetype == "d"
         if g:isWIN
             exec "!%:r.exe"
         else
             exec "!./%:r"
         endif
-    elseif &filetype == "lua"
-        exec "!lua %:t"
     elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
