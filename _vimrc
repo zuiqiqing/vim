@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-07-20 08:01
+" -----------------     Date: 2013-07-20 14:06
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -207,14 +207,13 @@ set shiftwidth=4
 set tabstop=4
 
 " 对部分语言设置单独的缩进
-au FileType lua,sh,scheme,lisp set shiftwidth=2
-au FileType lua,sh,scheme,lisp set tabstop=2
+au FileType lua,sh,scheme set shiftwidth=2
+au FileType lua,sh,scheme set tabstop=2
 
 " 根据后缀名指定文件类型
 au BufRead,BufNewFile *.txt setlocal ft=txt
 au BufRead,BufNewFile *.di  setlocal ft=d
 au BufRead,BufNewFile *.ss  setlocal ft=scheme
-au BufRead,BufNewFile *.cl  setlocal ft=lisp
 
 
 set backspace=2              " 设置退格键可用
@@ -445,16 +444,12 @@ func! CompileCode()
         exec "!dmd -wi %:t"
     elseif &filetype == "lua"
         exec "!lua %:t"
-    elseif &filetype == "perl"
-        exec "!perl %:t"
     elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
     elseif &filetype == "scheme"
         exec "!petite --script %:t"
-    elseif &filetype == "lisp"
-        exec "!ccl --load %:t"
     endif
 endfunc
 
@@ -468,16 +463,12 @@ func! RunCode()
         endif
     elseif &filetype == "lua"
         exec "!lua %:t"
-    elseif &filetype == "perl"
-        exec "!perl %:t"
     elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
     elseif &filetype == "scheme"
         exec "!petite --script %:t"
-    elseif &filetype == "lisp"
-        exec "!ccl --load %:t"
     endif
 endfunc
 
