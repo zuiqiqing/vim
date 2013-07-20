@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-07-19 12:37
+" -----------------     Date: 2013-07-20 08:01
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -20,7 +20,7 @@ else
 endif
 
 " 设置工作地点标志
-let g:atCompany = 1
+let g:atCompany = 0
 
 
 " 设置头文件路径，以及tags路径，用于代码补全
@@ -212,7 +212,7 @@ au FileType lua,sh,scheme,lisp set tabstop=2
 
 " 根据后缀名指定文件类型
 au BufRead,BufNewFile *.txt setlocal ft=txt
-au BufRead,BufNewFile *.h   setlocal ft=c
+au BufRead,BufNewFile *.di  setlocal ft=d
 au BufRead,BufNewFile *.ss  setlocal ft=scheme
 au BufRead,BufNewFile *.cl  setlocal ft=lisp
 
@@ -345,7 +345,7 @@ else
 endif
 let g:snipMate                         = {}
 let g:snipMate.scope_aliases           = {}
-let g:snipMate.scope_aliases['c']      = 'c,gtk'
+let g:snipMate.scope_aliases['c']      = 'cpp'
 let g:snipMate.scope_aliases['php']    = 'php,html'
 let g:snipMate.scope_aliases['smarty'] = 'smarty,html'
 let g:snipMate.scope_aliases['xhtml']  = 'html'
@@ -439,6 +439,8 @@ func! CompileCode()
     exec "w"
     if &filetype == "c"
         exec "!gcc -Wall -std=c11 -o %:r %:t"
+    elseif &filetype == "cpp"
+        exec "!g++ -Wall -std=c++11 -o %:r %:t"
     elseif &filetype == "d"
         exec "!dmd -wi %:t"
     elseif &filetype == "lua"
@@ -458,7 +460,7 @@ endfunc
 
 " 运行可执行文件
 func! RunCode()
-    if &filetype == "c" || &filetype == "d"
+    if &filetype == "c" || &filetype == "cpp" || &filetype == "d"
         if g:isWIN
             exec "!%:r.exe"
         else
@@ -508,9 +510,9 @@ if g:isWIN
         let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
         let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
     else
-        let blog.path          = 'D:/Develop/workspace/mysite/wiki/'
-        let blog.path_html     = 'D:/Develop/workspace/mysite/html/'
-        let blog.template_path = 'D:/Develop/workspace/mysite/templates/'
+        let blog.path          = 'D:/Ruchee/mysite/wiki/'
+        let blog.path_html     = 'D:/Ruchee/mysite/html/'
+        let blog.template_path = 'D:/Ruchee/mysite/templates/'
     endif
 else
     let blog.path          = '~/mysite/wiki/'
